@@ -1,0 +1,15 @@
+syntax = "proto3";
+package org.example.grpc;
+
+service NumberSequence {
+  rpc GetNumberSequence(NumberRange) returns (stream Number) {}
+}
+
+message NumberRange {
+  int32 firstValue = 1;
+  int32 lastValue = 2;
+}
+
+message Number {
+  int32 value = 1;
+}
