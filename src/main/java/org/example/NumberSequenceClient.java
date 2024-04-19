@@ -67,11 +67,9 @@ public class NumberSequenceClient {
         asyncStub.getNumberSequence(request, responseObserver);
 
         int currentValue = 0;
-        int lastNumber = 0;
         try {
             for (int i = 0; i <= 50; i++) {
-                lastNumber = responseValue.get() == lastNumber ? 0 :responseValue.get();
-                currentValue += lastNumber + 1;
+                currentValue += responseValue.getAndSet(0) + 1;
                 logger.info("Current Value: {}", currentValue);
                 Thread.sleep(1000);
             }
